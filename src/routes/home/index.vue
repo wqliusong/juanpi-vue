@@ -36,11 +36,6 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'home',
-  // data () {
-  //   return {
-  //     multiBlockData : [{data:""}]
-  //   }
-  // },
   computed: mapState({
     multiBlockData: state => state.home.multiData,
     swiperData: state => state.home.swiperData
