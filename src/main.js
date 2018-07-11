@@ -15,6 +15,7 @@ Vue.use(MintUI)
 Vue.component('v-swiper', vswiper)
 Vue.component('v-navbar', vNavbar)
 Vue.component('v-inScroll', vInScroll)
+
 // Vue.use(Button)
 // Vue.use(Select)
 new Vue({
