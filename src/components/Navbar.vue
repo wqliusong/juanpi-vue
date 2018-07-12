@@ -2,9 +2,8 @@
   <div id="navbarBox">
     <div v-on:click="item(selected)">
       <mt-navbar v-model="selected">
-        <mt-tab-item :id="1">选项一</mt-tab-item>
-        <mt-tab-item :id="2">选项二</mt-tab-item>
-        <mt-tab-item :id="3">选项三</mt-tab-item>
+        <mt-tab-item :id="1">精选专场</mt-tab-item>
+        <mt-tab-item :id="2">精选单品</mt-tab-item>
       </mt-navbar>
     </div>
     <!-- <mt-cell class="page-part" title="当前选中">{{ selected }}</mt-cell> -->
@@ -15,14 +14,18 @@
       <mt-tab-container-item :id="2">
         <v-inScroll :inScrollData="data2"></v-inScroll>
       </mt-tab-container-item>
-      <mt-tab-container-item :id="3">
-        <v-inScroll :inScrollData="data3"></v-inScroll>
-      </mt-tab-container-item>
     </mt-tab-container>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
+  computed: mapState({
+    listData: state => state.home.listData
+  }),
+  created () {
+    this.$store.dispatch('home/getScrollData')
+  },
   data () {
     return {
       selected: 1,
