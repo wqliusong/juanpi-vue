@@ -9,10 +9,10 @@
     <!-- <mt-cell class="page-part" title="当前选中">{{ selected }}</mt-cell> -->
     <mt-tab-container v-model="selected">
       <mt-tab-container-item :id="1">
-       <v-inScroll :inScrollData="data1"></v-inScroll>
+       <v-inScroll :inScrollData="listDataZc"></v-inScroll>
       </mt-tab-container-item>
       <mt-tab-container-item :id="2">
-        <v-inScroll :inScrollData="data2"></v-inScroll>
+        <v-inScroll :inScrollData="listDataDp"></v-inScroll>
       </mt-tab-container-item>
     </mt-tab-container>
   </div>
@@ -21,17 +21,16 @@
 import { mapState } from 'vuex'
 export default {
   computed: mapState({
-    listData: state => state.home.listData
+    listDataDp: state => state.home.listDataDp,
+    listDataZc: state => state.home.listDataZc
   }),
   created () {
-    this.$store.dispatch('home/getScrollData')
+    this.$store.dispatch('home/getScrollDataZc', 1)
+    this.$store.dispatch('home/getScrollDataDp', 1)
   },
   data () {
     return {
-      selected: 1,
-      data1: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      data2: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-      data3: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+      selected: 1
     }
   },
   methods: {

@@ -26,6 +26,9 @@
     <div id="multiad" v-if="multiBlockData.length">
       <img :src="multiBlockData[1].data[0].child[0].pic" alt="">
     </div>
+    <div id="multiad2" v-if="multiBlockData.length">
+      <img :src="multiBlockData[2].data[0].child[0].pic" alt="">
+    </div>
     <div id="navbarBox">
       <v-navbar></v-navbar>
     </div>
@@ -116,11 +119,19 @@ export default {
   }
   #multiad{
     width: 100%;
-    padding: 4px 0;
+    padding: 3px 0;
     img{
       width: 100%;
       background-color: #fff;
       margin-top: 7px;
+    }
+  }
+  #multiad2{
+    width: 100%;
+    padding: 5px 0;
+    img{
+      width: 100%;
+      background-color: #fff;
     }
   }
 }

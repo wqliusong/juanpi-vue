@@ -4,7 +4,8 @@ import api from '../../api'
 const state = {
   swiperData: [],
   multiData: [],
-  listData: []
+  listDataZc: [],
+  listDataDp: []
 }
 // getters
 const getters = {}
@@ -20,10 +21,16 @@ const actions = {
       commit('setMultiData', res.data.adsInfo.block[0].multi_block)
     })
   },
-  getScrollData ({ commit }) {
-    api.getHomeList(res => {
-      commit('setScollData', res)
-    })
+  getScrollDataZc ({ commit }, page) {
+    api.getHomeListZc(res => {
+      commit('setScollDataZc', res)
+      console.log(res)
+    }, page)
+  },
+  getScrollDataDp ({ commit }, page) {
+    api.getHomeListDp(res => {
+      commit('setScollDataDp', res)
+    }, page)
   }
 }
 // mutations
@@ -36,9 +43,13 @@ const mutations = {
     // console.log(multi)
     state.multiData = multi
   },
-  setScollData (state, list) {
+  setScollDataZc (state, list) {
     console.log(list)
-    state.listData = list
+    state.listDataZc = list
+  },
+  setScollDataDp (state, list) {
+    console.log(list)
+    state.listDataDp = list
   }
 }
 
