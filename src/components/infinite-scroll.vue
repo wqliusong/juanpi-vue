@@ -1,7 +1,7 @@
 <template>
   <div id="inScrollBox">
-    <ul v-infinite-scroll="loadMore" v-if="inScrollData.length" infinite-scroll-disabled="true">
-      <li v-for="i in inScrollData" :key="i">
+    <ul class="mui-table-view" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10" infinite-scroll-immediate-check="false">
+      <li v-for="i in inScrollData" :key="i.goods_id">
         <div>
           <img :src="i.pic_url" alt="图片" title="图片">
         </div>
@@ -18,24 +18,9 @@
 <script>
 export default {
   name: 'inScrollBox',
-  props: ['inScrollData'],
-  data () {
-    return {
-      list: []
-    }
-  },
-  methods: {
-    loadMore () {
-      this.loading = true
-      setTimeout(() => {
-        console.log(this.inScrollData)
-        let last = this.inScrollData[19]
-        for (let i = 1; i <= 10; i++) {
-          this.inScrollData.push(last + i)
-        }
-        this.loading = false
-      }, 2500)
-    }
+  props: ['inScrollData', 'loading', 'loadMore', 'page', 'list'],
+  mounted () {
+    console.log(this.inScrollData)
   }
 }
 </script>
