@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="home"  ref="navbar">
     <div class="downApp">
       <img src="//jp.juancdn.com/jpwebapp/images/go_load_new.png" alt="">
     </div>
@@ -32,6 +32,7 @@
     <div id="navbarBox">
       <v-navbar></v-navbar>
     </div>
+    <div @click="goTop" id="goTop" v-show="showHide">top</div>
   </div>
 </template>
 <script>
@@ -39,6 +40,11 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'home',
+  data () {
+    return {
+      showHide: false
+    }
+  },
   computed: mapState({
     multiBlockData: state => state.home.multiData,
     swiperData: state => state.home.swiperData
@@ -49,11 +55,43 @@ export default {
   },
   mounted () {
     console.log(this.$store.state)
+    this.TopSH()
+    var _this = this
+    window.addEventListener('scroll', function (_this) {
+      console.log(document.documentElement.scrollTop, document.documentElement.scrollTop > 1000, _this.showHide, _this) // 滚动高度
+      if (document.documentElement.scrollTop > 1000) {
+        this.showHide = true
+      } else {
+        this.showHide = false
+      }
+    })
+  },
+  methods: {
+    goTop: function () {
+      console.log(document.body.scrollTop, document.body.offsetTop)
+    },
+    TopSH: function () {
+      console.log(this.$refs.navbar.offsetTop)
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
 #home {
+  #goTop{
+    position: fixed;
+    right: 25px;
+    bottom: 40px;
+    width: 55px;
+    height: 55px;
+    background: #fff;
+    border: 1px solid #888;
+    border-radius: 10px;
+    color: #000;
+    font-size: 24px;
+    text-align: center;
+    line-height: 55px;
+  }
   background-color: #f4f4f8;
   .downApp {
     height: 60px;

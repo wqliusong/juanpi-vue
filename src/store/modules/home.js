@@ -45,11 +45,11 @@ const mutations = {
   },
   setScollDataZc (state, list) {
     console.log(list)
-    state.listDataZc = list
+    state.listDataZc = state.listDataZc.concat(list)
   },
   setScollDataDp (state, list) {
     console.log(list)
-    state.listDataDp = list
+    state.listDataDp = state.listDataDp.concat(list)
   }
 }
 

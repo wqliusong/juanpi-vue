@@ -18,9 +18,9 @@
 <script>
 export default {
   name: 'inScrollBox',
-  props: ['inScrollData', 'loading', 'loadMore', 'page', 'list'],
+  props: ['inScrollData', 'loading', 'loadMore', 'page'],
   mounted () {
-    console.log(this.inScrollData)
+    console.log(this.list)
   }
 }
 </script>
