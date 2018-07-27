@@ -6,9 +6,10 @@
           <img :src="i.pic_url" alt="图片" title="图片">
         </div>
         <div>
-          <p>{{i.coupon_tips}}</p>
+          <p v-bind:style="{width: i.logo_url ? zc : dp}">{{i.coupon_tips ? i.coupon_tips : "¥" + i.cprice}}</p>
+          <p v-show="i.logo_url ? false : true" style="font-size:12px;color:#aaa;text-decoration:line-through;line-height:24px;">¥{{i.oprice}}</p>
           <p>{{i.title}}</p>
-          <img :src="i.logo_url" alt="图片" title="图片">
+          <img :src="i.logo_url" v-show="i.logo_url ? true : false" alt="图片" title="图片">
           <span>{{i.time_left}}</span>
         </div>
       </li>
@@ -20,6 +21,12 @@
 export default {
   name: 'inScrollBox',
   props: ['inScrollData', 'loading', 'loadMore', 'page', 'noShowHide'],
+  data () {
+    return {
+      zc: '60%',
+      dp: '25%'
+    }
+  },
   mounted () {
     console.log(this.list)
   }
@@ -68,13 +75,13 @@ export default {
           margin: 2px 0;
         }
         p:nth-of-type(1){
-          font-size: 16px;
+          font-size: 14px;
           color: #ff464e;
           margin-left: 10px;
         }
-        p:nth-of-type(2){
+        p:nth-of-type(3){
           font-size: 12px;
-           margin-left: 10px;
+          margin-left: 10px;
         }
         span{
           float: right;

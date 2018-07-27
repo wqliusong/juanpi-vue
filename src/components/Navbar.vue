@@ -11,9 +11,9 @@
       <mt-tab-container-item :id="1">
         <v-inScroll :inScrollData="listDataZc" :loading="loadingZc" :loadMore="loadMore" :page="pageZc" :noShowHide="noZc"></v-inScroll>
       </mt-tab-container-item>
-      <!-- <mt-tab-container-item :id="2">
-        <v-inScroll :inScrollData="listDataDp" :loading="loadingDp" :loadMore="loadMore" :page="pageDp" :list="listDp"></v-inScroll>
-      </mt-tab-container-item> -->
+      <mt-tab-container-item :id="2">
+        <v-inScroll :inScrollData="listDataDp" :loading="loadingDp" :loadMore="loadMore" :page="pageDp" :noShowHide="noDp"></v-inScroll>
+      </mt-tab-container-item>
     </mt-tab-container>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
       loadingDp: false,
       // listZc: [],
       // listDp: [],
-      pageZc: 28,
+      pageZc: 1,
       pageDp: 1
     }
   },
@@ -62,8 +62,16 @@ export default {
         }
       } else if (this.selected === 2) {
         this.loadingZc = true
-        this.loadingDp = false
-        console.log('Dp++')
+        this.loadingDp = true
+        if (this.noDp) {
+          console.log('没数据')
+        } else {
+          setTimeout(() => {
+            this.$store.dispatch('home/getScrollDataDp', ++this.pageDp)
+            this.loadingDp = false
+            console.log('Dp++')
+          }, 2500)
+        }
       } else {
         this.loadingDp = true
         this.loadingZc = true

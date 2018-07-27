@@ -56,7 +56,12 @@ const mutations = {
   },
   setScollDataDp (state, list) {
     console.log(list)
-    state.listDataDp = state.listDataDp.concat(list)
+    if (!list) {
+      state.noZc = true
+    } else {
+      state.noZc = false
+      state.listDataDp = state.listDataDp.concat(list)
+    }
   }
 }
 
