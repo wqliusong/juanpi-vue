@@ -50,7 +50,7 @@
         <span></span>
       </div>
     </div>
-    <div @click="goTop" id="goTop" v-show="showHide">top</div>
+    <div @click="goTop" id="goTop" v-show="showHide">TOP</div>
   </div>
 </template>
 <script>
@@ -65,11 +65,13 @@ export default {
   },
   computed: mapState({
     multiBlockData: state => state.home.multiData,
-    swiperData: state => state.home.swiperData
+    swiperData: state => state.home.swiperData,
+    footerData: state => state.home.footerData
   }),
   created () {
     this.$store.dispatch('home/getSwiperData')
     this.$store.dispatch('home/getMultiData')
+    this.$store.dispatch('home/getFooterData')
   },
   mounted () {
     console.log(this.$store.state)
@@ -93,23 +95,46 @@ export default {
 </script>
 <style lang="scss" scoped>
 #home {
+  padding-bottom: 70px;
   #footer{
     width: 100%;
-    height: 70px;
+    height: 60px;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #aaa;
+    div{
+      height: 100%;
+      width: 25%;
+      float: left;
+      span{
+        float: left;
+        width: 100%;
+      }
+      span:nth-of-type(1){
+        height: 65%;
+        background: pink;
+      }
+      span:nth-of-type(2){
+        height: 35%;
+        background: yellow;
+      }
+    }
   }
   #goTop{
     position: fixed;
     right: 25px;
-    bottom: 40px;
-    width: 55px;
-    height: 55px;
+    bottom: 100px;
+    width: 50px;
+    height: 50px;
     background: #fff;
     border: 1px solid #888;
     border-radius: 10px;
     color: #000;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
-    line-height: 55px;
+    line-height: 50px;
   }
   background-color: #f4f4f8;
   .downApp {

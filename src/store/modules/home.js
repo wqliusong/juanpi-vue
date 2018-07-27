@@ -7,7 +7,8 @@ const state = {
   listDataZc: [],
   listDataDp: [],
   noZc: false,
-  noDp: false
+  noDp: false,
+  footerData: []
 }
 // getters
 const getters = {}
@@ -33,6 +34,11 @@ const actions = {
     api.getHomeListDp(res => {
       commit('setScollDataDp', res)
     }, page)
+  },
+  getFooterData ({ commit }) {
+    api.getHomeData(res => {
+      commit('setFooterData', res.data.menuInfo.app_menu.menulist)
+    })
   }
 }
 // mutations
@@ -62,6 +68,10 @@ const mutations = {
       state.noZc = false
       state.listDataDp = state.listDataDp.concat(list)
     }
+  },
+  setFooterData (state, footer) {
+    console.log(footer)
+    state.footerData = footer
   }
 }
 
