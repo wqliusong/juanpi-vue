@@ -5,7 +5,9 @@ const state = {
   swiperData: [],
   multiData: [],
   listDataZc: [],
-  listDataDp: []
+  listDataDp: [],
+  noZc: false,
+  noDp: false
 }
 // getters
 const getters = {}
@@ -44,8 +46,13 @@ const mutations = {
     state.multiData = multi
   },
   setScollDataZc (state, list) {
-    console.log(list)
-    state.listDataZc = state.listDataZc.concat(list)
+    console.log(!list)
+    if (!list) {
+      state.noZc = true
+    } else {
+      state.noZc = false
+      state.listDataZc = state.listDataZc.concat(list)
+    }
   },
   setScollDataDp (state, list) {
     console.log(list)

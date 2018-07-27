@@ -9,7 +9,7 @@
     <!-- <mt-cell class="page-part" title="当前选中">{{ selected }}</mt-cell> -->
     <mt-tab-container v-model="selected">
       <mt-tab-container-item :id="1">
-        <v-inScroll :inScrollData="listDataZc" :loading="loadingZc" :loadMore="loadMore" :page="pageZc"></v-inScroll>
+        <v-inScroll :inScrollData="listDataZc" :loading="loadingZc" :loadMore="loadMore" :page="pageZc" :noShowHide="noZc"></v-inScroll>
       </mt-tab-container-item>
       <!-- <mt-tab-container-item :id="2">
         <v-inScroll :inScrollData="listDataDp" :loading="loadingDp" :loadMore="loadMore" :page="pageDp" :list="listDp"></v-inScroll>
@@ -22,7 +22,9 @@ import { mapState } from 'vuex'
 export default {
   computed: mapState({
     listDataZc: state => state.home.listDataZc,
-    listDataDp: state => state.home.listDataDp
+    listDataDp: state => state.home.listDataDp,
+    noZc: state => state.home.noZc,
+    noDp: state => state.home.noDp
   }),
   created () {
     this.$store.dispatch('home/getScrollDataZc', this.pageZc)
@@ -35,7 +37,7 @@ export default {
       loadingDp: false,
       // listZc: [],
       // listDp: [],
-      pageZc: 1,
+      pageZc: 28,
       pageDp: 1
     }
   },
@@ -45,10 +47,11 @@ export default {
     },
     loadMore: function () {
       // console.log('++', this.selected)
+      console.log(this.noZc)
       if (this.selected === 1) {
         this.loadingZc = true
         this.loadingDp = true
-        if (this.listDataZc.length === 0) {
+        if (this.noZc) {
           console.log('没数据')
         } else {
           setTimeout(() => {

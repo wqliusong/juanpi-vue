@@ -26,7 +26,7 @@
     <div id="multiad" v-if="multiBlockData.length">
       <img :src="multiBlockData[1].data[0].child[0].pic" alt="">
     </div>
-    <div id="multiad2" v-if="multiBlockData.length">
+    <div id="multiad2" v-if="multiBlockData.length > 2">
       <img :src="multiBlockData[2].data[0].child[0].pic" alt="">
     </div>
     <div id="navbarBox">
@@ -55,23 +55,20 @@ export default {
   },
   mounted () {
     console.log(this.$store.state)
-    this.TopSH()
     var _this = this
-    window.addEventListener('scroll', function (_this) {
-      console.log(document.documentElement.scrollTop, document.documentElement.scrollTop > 1000, _this.showHide, _this) // 滚动高度
+    window.addEventListener('scroll', function () {
+      // console.log(document.documentElement.scrollTop, document.documentElement.scrollTop > 1000, _this.showHide, _this) // 滚动高度
       if (document.documentElement.scrollTop > 1000) {
-        this.showHide = true
+        _this.showHide = true
       } else {
-        this.showHide = false
+        _this.showHide = false
       }
     })
   },
   methods: {
     goTop: function () {
       console.log(document.body.scrollTop, document.body.offsetTop)
-    },
-    TopSH: function () {
-      console.log(this.$refs.navbar.offsetTop)
+      document.documentElement.scrollTop = 0
     }
   }
 }

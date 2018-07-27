@@ -13,12 +13,13 @@
         </div>
       </li>
     </ul>
+    <div id="noShowHide" v-show="noShowHide">没有东西了</div>
   </div>
 </template>
 <script>
 export default {
   name: 'inScrollBox',
-  props: ['inScrollData', 'loading', 'loadMore', 'page'],
+  props: ['inScrollData', 'loading', 'loadMore', 'page', 'noShowHide'],
   mounted () {
     console.log(this.list)
   }
@@ -26,6 +27,15 @@ export default {
 </script>
 <style lang="scss">
   #inScrollBox{
+    #noShowHide{
+      width: 100%;
+      background: #fff;
+      line-height: 40px;
+      height: 40px;
+      text-align: center;
+      float: left;
+      border-top: 1px solid #eee;
+    }
     ul{
       padding-top: 3px;
     }
