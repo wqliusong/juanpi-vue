@@ -83,7 +83,7 @@ export default {
     let _this = this
     window.addEventListener('scroll', function () {
       // console.log(document.documentElement.scrollTop, document.documentElement.scrollTop > 400, _this.classNb) // 滚动高度
-      if (document.documentElement.scrollTop > 400) {
+      if (document.body.scrollTop > 400) {
         _this.classNb = 'nbAct'
       } else {
         _this.classNb = 'nbStp'

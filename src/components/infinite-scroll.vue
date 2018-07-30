@@ -7,7 +7,7 @@
         </div>
         <div>
           <p v-bind:style="{width: i.logo_url ? zc : dp}">{{i.coupon_tips ? i.coupon_tips : "¥" + i.cprice}}</p>
-          <p v-show="i.logo_url ? false : true" style="font-size:12px;color:#aaa;text-decoration:line-through;line-height:24px;">¥{{i.oprice}}</p>
+          <p v-show="i.logo_url ? false : true" style="font-size:3vw;color:#aaa;text-decoration:line-through;line-height:24px;">¥{{i.oprice}}</p>
           <p>{{i.title}}</p>
           <img :src="i.logo_url" v-show="i.logo_url ? true : false" alt="图片" title="图片">
           <span>{{i.time_left}}</span>
@@ -37,8 +37,8 @@ export default {
     #noShowHide{
       width: 100%;
       background: #fff;
-      line-height: 40px;
-      height: 40px;
+      line-height: 10vw;
+      height: 10vw;
       text-align: center;
       float: left;
       border-top: 1px solid #eee;
@@ -47,7 +47,7 @@ export default {
       padding-top: 3px;
     }
     li{
-      height: 233px;
+      height: 60vw;
       background: #fff;
       width: 49%;
       float: left;
@@ -75,17 +75,17 @@ export default {
           margin: 2px 0;
         }
         p:nth-of-type(1){
-          font-size: 14px;
+          font-size: 4vw;
           color: #ff464e;
           margin-left: 10px;
         }
         p:nth-of-type(3){
-          font-size: 12px;
+          font-size: 3vw;
           margin-left: 10px;
         }
         span{
           float: right;
-          font-size: 12px;
+          font-size: 3vw;
           color: #aaa;
           width: auto;
           margin-right: 10px;
