@@ -1,6 +1,6 @@
 <template>
   <div id="navbarBox">
-    <div v-on:click="item(selected)">
+    <div v-on:click="item(selected)" :class="classNb">
       <mt-navbar v-model="selected">
         <mt-tab-item :id="1">精选专场</mt-tab-item>
         <mt-tab-item :id="2">精选单品</mt-tab-item>
@@ -38,7 +38,8 @@ export default {
       // listZc: [],
       // listDp: [],
       pageZc: 1,
-      pageDp: 1
+      pageDp: 1,
+      classNb: 'nbStp'
     }
   },
   methods: {
@@ -58,7 +59,7 @@ export default {
             this.$store.dispatch('home/getScrollDataZc', ++this.pageZc)
             this.loadingZc = false
             console.log('Zc++')
-          }, 2500)
+          }, 1000)
         }
       } else if (this.selected === 2) {
         this.loadingZc = true
@@ -70,15 +71,37 @@ export default {
             this.$store.dispatch('home/getScrollDataDp', ++this.pageDp)
             this.loadingDp = false
             console.log('Dp++')
-          }, 2500)
+          }, 1000)
         }
       } else {
         this.loadingDp = true
         this.loadingZc = true
       }
     }
+  },
+  mounted () {
+    let _this = this
+    window.addEventListener('scroll', function () {
+      // console.log(document.documentElement.scrollTop, document.documentElement.scrollTop > 400, _this.classNb) // 滚动高度
+      if (document.documentElement.scrollTop > 400) {
+        _this.classNb = 'nbAct'
+      } else {
+        _this.classNb = 'nbStp'
+      }
+    })
   }
 }
 </script>
 <style lang="scss">
+  .nbAct{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 1000;
+  }
+  .nbStp{
+    width: 100%;
+    position: inherit;
+  }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="home"  ref="navbar">
+  <div id="home">
     <div class="downApp">
       <img src="//jp.juancdn.com/jpwebapp/images/go_load_new.png" alt="">
     </div>
@@ -33,21 +33,9 @@
       <v-navbar></v-navbar>
     </div>
     <div id="footer">
-      <div>
-        <span></span>
-        <span></span>
-      </div>
-      <div>
-        <span></span>
-        <span></span>
-      </div>
-      <div>
-        <span></span>
-        <span></span>
-      </div>
-      <div>
-        <span></span>
-        <span></span>
+      <div v-for="i in footerData" :key="i.title">
+        <span><img :src="i.title == actFooter ? i.act_icon : i.bg_icon" alt="i.title" :title="i.title"></span>
+        <span v-bind:style="{color: i.title == actFooter ? i.act_color : i.bg_color}">{{i.title}}</span>
       </div>
     </div>
     <div @click="goTop" id="goTop" v-show="showHide">TOP</div>
@@ -60,7 +48,8 @@ export default {
   name: 'home',
   data () {
     return {
-      showHide: false
+      showHide: false,
+      actFooter: ''
     }
   },
   computed: mapState({
@@ -74,7 +63,16 @@ export default {
     this.$store.dispatch('home/getFooterData')
   },
   mounted () {
-    console.log(this.$store.state)
+    console.log(this)
+    if (this.$route.path === '/') {
+      this.actFooter = '首页'
+    } else if (this.$route.path === '/class') {
+      this.actFooter = '分类'
+    } else if (this.$route.path === '/car') {
+      this.actFooter = '购物车'
+    } else if (this.$route.path === '/my') {
+      this.actFooter = '我的卷皮'
+    }
     var _this = this
     window.addEventListener('scroll', function () {
       // console.log(document.documentElement.scrollTop, document.documentElement.scrollTop > 1000, _this.showHide, _this) // 滚动高度
@@ -95,15 +93,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 #home {
-  padding-bottom: 70px;
+  padding-bottom: 40px;
   #footer{
     width: 100%;
-    height: 60px;
+    height: 40px;
     background: #fff;
     position: fixed;
     bottom: 0;
     left: 0;
-    border-top: 1px solid #aaa;
     div{
       height: 100%;
       width: 25%;
@@ -113,12 +110,16 @@ export default {
         width: 100%;
       }
       span:nth-of-type(1){
-        height: 65%;
-        background: pink;
+        height: 60%;
+        img{
+          height: 90%;
+          margin-left: 38%;
+        }
       }
       span:nth-of-type(2){
-        height: 35%;
-        background: yellow;
+        height: 40%;
+        text-align: center;
+        font-size: 12px;
       }
     }
   }
