@@ -1,6 +1,8 @@
 <template>
   <div id="classify">
-  jp
+    jp
+    <v-footer>
+    </v-footer>
   </div>
 </template>
 <script>

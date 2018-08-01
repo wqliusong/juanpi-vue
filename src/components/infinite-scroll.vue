@@ -1,7 +1,7 @@
 <template>
   <div id="inScrollBox">
     <ul class="mui-table-view" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10" infinite-scroll-immediate-check="false">
-      <li v-for="i in inScrollData" :key="i.goods_id">
+      <li v-for="(i, index) in inScrollData" :key="index">
         <div>
           <img :src="i.pic_url" alt="图片" title="图片">
         </div>

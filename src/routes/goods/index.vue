@@ -1,6 +1,6 @@
 <template>
   <div id="classify">
-  goods
+    goods
   </div>
 </template>
 <script>

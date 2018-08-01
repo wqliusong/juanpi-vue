@@ -1,4 +1,5 @@
 import axios from 'axios'
+import fetchJsonp from 'fetch-jsonp'
 export default {
   getHomeData (cb) {
     axios.get('/api/getIndexFirstPaintInfo', {
@@ -53,5 +54,17 @@ export default {
       .catch(function (error) {
         console.log(error)
       })
+  },
+  getClassifyData (cb) {
+    fetchJsonp('https://m.juanpi.com/cate/catelist?pf=8&area=4&bi=222&dtype=jsonp&_=1533088145835&callback=jsonp1').then(function (res) {
+      res.json().then(function (data) {
+        // console.log(data)
+        cb(data)
+      })
+    }).then(function (json) {
+      console.log(json)
+    }).catch(function (error) {
+      console.log(error)
+    })
   }
 }

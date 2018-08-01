@@ -1,6 +1,6 @@
 <template>
-  <div id="footer">
-      <div v-for="i in footerData" :key="i.title">
+  <div id="webFooter">
+      <div v-for="i in footerData" :key="i.title" @click="linkTo(i.title)">
         <span><img :src="i.title == actFooter ? i.act_icon : i.bg_icon" alt="i.title" :title="i.title"></span>
         <span v-bind:style="{color: i.title == actFooter ? i.act_color : i.bg_color}">{{i.title}}</span>
       </div>
@@ -9,7 +9,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  name: 'footer',
+  name: 'webFooter',
   data () {
     return {
       actFooter: ''
@@ -24,18 +24,32 @@ export default {
   mounted () {
     if (this.$route.path === '/') {
       this.actFooter = '首页'
-    } else if (this.$route.path === '/class') {
+    } else if (this.$route.path === '/classify') {
       this.actFooter = '分类'
     } else if (this.$route.path === '/car') {
       this.actFooter = '购物车'
-    } else if (this.$route.path === '/my') {
+    } else if (this.$route.path === '/myjp') {
       this.actFooter = '我的卷皮'
+    }
+  },
+  methods: {
+    linkTo: function (i) {
+      console.log(i)
+      if (i === '首页') {
+        this.$router.push('/')
+      } else if (i === '分类') {
+        this.$router.push('/classify')
+      } else if (i === '购物车') {
+        this.$router.push('/car')
+      } else if (i === '我的卷皮') {
+        this.$router.push('/myjp')
+      }
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-  #footer{
+  #webFooter{
     width: 100%;
     height: 11vw;
     background: #fff;

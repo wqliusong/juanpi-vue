@@ -1,6 +1,8 @@
 <template>
   <div id="classify">
-  car
+    car
+    <v-footer>
+    </v-footer>
   </div>
 </template>
 <script>

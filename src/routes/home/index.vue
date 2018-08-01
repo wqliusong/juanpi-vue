@@ -70,14 +70,14 @@ export default {
   methods: {
     goTop: function () {
       console.log(document.body.scrollTop, document.body.offsetTop)
-      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
     }
   }
 }
 </script>
 <style lang="scss" scoped>
 #home {
-  padding-bottom: 40px;
+  padding-bottom: 11vw;
   .downApp {
     height: 16vw;
     background: white;
