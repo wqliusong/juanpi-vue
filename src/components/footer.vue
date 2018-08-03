@@ -56,6 +56,8 @@ export default {
     position: fixed;
     bottom: 0;
     left: 0;
+    z-index: 1000;
+    border-top: 1px solid #eee;
     div{
       height: 100%;
       width: 25%;
@@ -69,6 +71,7 @@ export default {
         img{
           height: 90%;
           margin-left: 38%;
+          margin-top: 3%;
         }
       }
       span:nth-of-type(2){

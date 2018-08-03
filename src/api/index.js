@@ -66,5 +66,22 @@ export default {
     }).catch(function (error) {
       console.log(error)
     })
+  },
+  getGoodsData (cb, id) {
+    console.log(id)
+    axios.get('/api/getMemberAboutInfo', {
+      params: {
+        goods_id: id,
+        sa_id: 17722914,
+        is_pt_goods: 0,
+        req_coupons_id: id
+      }
+    }).then(function (res) {
+      console.log(res)
+      cb(res)
+    })
+      .catch(function (err) {
+        console.log(err)
+      })
   }
 }

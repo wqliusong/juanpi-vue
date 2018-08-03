@@ -7,7 +7,7 @@
       </div>
     </div>
     <ul id="classList" v-if="classifyData.length">
-      <li v-for="(i, index) in classifyData" :key="index" @click="getListNum(index)">
+      <li v-bind:class="listNum == index ? actLi : defLi" v-for="(i, index) in classifyData" :key="index" @click="getListNum(index)">
         {{i.name}}
       </li>
     </ul>
@@ -15,7 +15,7 @@
       <li v-for="(i, index) in classifyData[listNum].secondCateList" :key="index">
        <img :src="'http://s2.juancdn.com' + i.icon" alt="">
        <span>{{i.name}}</span>
-       <i>{{i.icon_type == '0' ? '' : i.icon_type == 1 ? 'HOT' : 'NEW'}}</i>
+       <i v-bind:style="{background: i.icon_type == '0' ? '' : i.icon_type == 1 ? red : blue}" v-show="i.icon_type == '0' ? false : true">{{i.icon_type == '0' ? '' : i.icon_type == 1 ? 'HOT' : 'NEW'}}</i>
       </li>
     </ul>
     <v-footer>
@@ -29,7 +29,11 @@ export default{
   name: 'classify',
   data () {
     return {
-      listNum: 0
+      listNum: 0,
+      red: 'rgb(241, 94, 94)',
+      blue: 'rgb(99, 143, 240)',
+      actLi: 'actLi',
+      defLi: 'defLi'
     }
   },
   methods: {
@@ -51,14 +55,24 @@ export default{
 </script>
 <style lang="scss">
 #classify{
+  .actLi{
+    border-left: 3px solid rgb(255, 70, 78);
+    background: #fff;
+  }
+  .defLi{
+    border-left: none;
+    background: #f7f7f7;
+  }
   li{
     list-style: none;
   }
+  height: 100vh;
   #search{
     width: 100%;
     height: 13vw;
     background: #fff;
-    float: left;
+    position: fixed;
+    z-index: 100;
     div{
       float: left;
       width: 94%;
@@ -85,25 +99,34 @@ export default{
   }
   #classList{
     width: 26%;
-    float: left;
     background: #fff;
     padding-bottom: 11vw;
+    position: fixed;
+    left: 0;
+    overflow-y: auto;
+    padding-top: 13vw;
+    height: 84vh;
+    z-index: 10;
+    background: #f7f7f7;
     li{
       float: left;
-      width: 100%;
+      width: 85%;
       height: 12vw;
       line-height: 12vw;
       padding-left: 15%;
-      background: #f7f7f7;
       font-size: 3.5vw;
       border-bottom: 1px solid #eee;
     }
   }
   #classInfo{
     width: 74%;
-    float: left;
     background: #fff;
-    padding-bottom: 11vw;
+    position: fixed;
+    right: 0;
+    overflow-y: auto;
+    padding-top: 13vw;
+    height: 83vh;
+    z-index: 10;
     li{
       float: left;
       width: 33.3%;
@@ -123,6 +146,7 @@ export default{
       }
     }
     i{
+      color: #fff;
       position: absolute;
       right: 3%;
       top: 0;

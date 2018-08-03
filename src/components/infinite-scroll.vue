@@ -2,16 +2,18 @@
   <div id="inScrollBox">
     <ul class="mui-table-view" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10" infinite-scroll-immediate-check="false">
       <li v-for="(i, index) in inScrollData" :key="index">
-        <div>
-          <img :src="i.pic_url" alt="图片" title="图片">
-        </div>
-        <div>
-          <p v-bind:style="{width: i.logo_url ? zc : dp}">{{i.coupon_tips ? i.coupon_tips : "¥" + i.cprice}}</p>
-          <p v-show="i.logo_url ? false : true" style="font-size:3vw;color:#aaa;text-decoration:line-through;line-height:24px;">¥{{i.oprice}}</p>
-          <p>{{i.title}}</p>
-          <img :src="i.logo_url" v-show="i.logo_url ? true : false" alt="图片" title="图片">
-          <span>{{i.time_left}}</span>
-        </div>
+        <router-link :to="'/goods?id=' + i.goods_id">
+          <div>
+            <img :src="i.pic_url" alt="图片" title="图片">
+          </div>
+          <div>
+            <p v-bind:style="{width: i.logo_url ? zc : dp}">{{i.coupon_tips ? i.coupon_tips : "¥" + i.cprice}}</p>
+            <p v-show="i.logo_url ? false : true" style="font-size:3vw;color:#aaa;text-decoration:line-through;line-height:24px;">¥{{i.oprice}}</p>
+            <p>{{i.title}}</p>
+            <img :src="i.logo_url" v-show="i.logo_url ? true : false" alt="图片" title="图片">
+            <span>{{i.time_left}}</span>
+          </div>
+        </router-link>
       </li>
     </ul>
     <div id="noShowHide" v-show="noShowHide">没有东西了</div>
@@ -34,6 +36,9 @@ export default {
 </script>
 <style lang="scss">
   #inScrollBox{
+    a{
+      color: #000;
+    }
     #noShowHide{
       width: 100%;
       background: #fff;
