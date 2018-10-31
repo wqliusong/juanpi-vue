@@ -59,6 +59,8 @@ export default {
     console.log(this)
     var _this = this
     window.addEventListener('scroll', function (e) {
+      // document.body.scrollTop为手机高度设置,电脑无反应
+      // document.documentElement.scrollTop为电脑高度设置,手机无反应
       // console.log(document.body.scrollTop, document.body.scrollTop > 1000, _this.showHide, _this) // 滚动高度
       if (document.body.scrollTop > 1000) {
         _this.showHide = true
